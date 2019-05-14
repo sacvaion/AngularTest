@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -8,10 +8,10 @@ import { HeroService }  from '../hero.service';
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
-  styleUrls: [ './hero-detail.component.less' ]
+  styleUrls: [ './hero-detail.component.css' ]
 })
 export class HeroDetailComponent implements OnInit {
-  hero: Hero;
+  @Input() hero: Hero;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,9 +32,9 @@ export class HeroDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-  
-  save():void{
+
+ save(): void {
     this.heroService.updateHero(this.hero)
-      .subscribe(() => this.goBack);
+      .subscribe(() => this.goBack());
   }
 }
